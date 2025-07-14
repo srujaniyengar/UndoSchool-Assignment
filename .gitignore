@@ -1,0 +1,88 @@
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+# Eclipse
+*.classpath
+*.project
+*.settings/
+
+# IntelliJ
+.idea/
+*.iml
+*.iws
+out/
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Spring Boot devtools
+.spring-boot-devtools.properties
+
+# Environment files
+.env
+
+# mvnw wrappers
+.mvn/wrapper/maven-wrapper.jar
+
+# Docker
+*.pid
+*.seed
+*.pid.lock
+
+# Node / Frontend (if present)
+node_modules/
+dist/
+
+# Test reports
+surefire-reports/
+test-output/
+
+# Backup files
+*~
+
+# JetBrains Rider
+.idea/
+*.sln
+*.user
+*.suo
+
+# Local config
+*.local
+*.swp
+
+# Others
+*.tmp
+*.bak
+
+# IDE specific ignore
+# JetBrains
+*.idea/
+*.ipr
+*.iws
+
+# Windows
+ehthumbs.db
+Icon?
+Desktop.ini
+
+# Mac
+*.DS_Store
+
+# Linux
+*~
+
+# Exception for important scripts
+!mvnw
+!
