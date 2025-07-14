@@ -1,1 +1,6 @@
+com/app/backend/controller/CourseSearchController.class
+com/app/backend/repository/CourseRepository.class
+com/app/backend/document/CourseDocument.class
+com/app/backend/service/CourseService$1.class
+com/app/backend/service/CourseService.class
 com/app/backend/BackendApplication.class
