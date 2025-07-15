@@ -1,6 +1,6 @@
+/home/supergg/devz/https/Unschool-Assignment/src/main/java/com/app/backend/repository/CourseRepository.java
 /home/supergg/devz/https/Unschool-Assignment/src/main/java/com/app/backend/controller/CourseSearchController.java
-/home/supergg/devz/https/Unschool-Assignment/src/main/java/com/app/backend/docs/CourseDocument.java
-/home/supergg/devz/https/Unschool-Assignment/src/main/java/com/app/backend/repo/CourseRepository.java
 /home/supergg/devz/https/Unschool-Assignment/src/main/java/com/app/backend/service/CourseService.java
+/home/supergg/devz/https/Unschool-Assignment/src/main/java/com/app/backend/document/CourseDocument.java
 /home/supergg/devz/https/Unschool-Assignment/src/main/java/com/app/backend/dto/CourseSearchResponse.java
 /home/supergg/devz/https/Unschool-Assignment/src/main/java/com/app/backend/BackendApplication.java
