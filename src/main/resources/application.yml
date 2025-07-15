@@ -1,9 +1,7 @@
 spring:
   data:
     elasticsearch:
-      client:
-        reactive:
-          endpoints: localhost:9200
+      uris: http://localhost:9200
 
 server:
   port: 8080
