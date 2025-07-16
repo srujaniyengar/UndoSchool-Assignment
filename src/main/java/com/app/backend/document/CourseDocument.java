@@ -16,20 +16,17 @@ import java.time.Instant;
 @AllArgsConstructor
 @Document(indexName = "courses")
 public class CourseDocument {
-
     @Id
     private String id;
-
     private String title;
     private String description;
     private String category;
-    private String type;
+    private String type; // e.g., "COURSE", "CLUB"
+    private String gradeRange;
     private int minAge;
     private int maxAge;
     private double price;
 
     @Field(type = FieldType.Date, format = DateFormat.date_time)
     private Instant nextSessionDate;
-
-    private String gradeRange;
 }

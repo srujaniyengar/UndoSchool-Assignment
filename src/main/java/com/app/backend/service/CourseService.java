@@ -31,7 +31,7 @@ public class CourseService {
     private final ElasticsearchOperations elasticsearchOperations;
 
     @Autowired
-    private ObjectMapper objectMapper;  //spring inject
+    private ObjectMapper objectMapper;
 
     @PostConstruct
     public void loadSampleData() {
@@ -65,45 +65,35 @@ public class CourseService {
     ) {
         Criteria criteria = new Criteria();
 
-        // Full-text search on title or description
+        // Fuzzy on title (default fuzziness), normal on description
         if (q != null && !q.isBlank()) {
-            Criteria titleCriteria = new Criteria("title").matches(q);
+            Criteria titleCriteria = new Criteria("title").fuzzy(q);
             Criteria descriptionCriteria = new Criteria("description").matches(q);
             criteria = criteria.subCriteria(titleCriteria).or(descriptionCriteria);
         }
 
-        // Age filter
         if (minAge != null) {
             criteria = criteria.and(new Criteria("maxAge").greaterThanEqual(minAge));
         }
         if (maxAge != null) {
             criteria = criteria.and(new Criteria("minAge").lessThanEqual(maxAge));
         }
-
-        // Category filter
         if (category != null && !category.isBlank()) {
             criteria = criteria.and(new Criteria("category").is(category));
         }
-
-        // Type filter
         if (type != null && !type.isBlank()) {
             criteria = criteria.and(new Criteria("type").is(type));
         }
-
-        // Price filter
         if (minPrice != null) {
             criteria = criteria.and(new Criteria("price").greaterThanEqual(minPrice));
         }
         if (maxPrice != null) {
             criteria = criteria.and(new Criteria("price").lessThanEqual(maxPrice));
         }
-
-        // Date filter
         if (startDate != null) {
             criteria = criteria.and(new Criteria("nextSessionDate").greaterThanEqual(startDate.toString()));
         }
 
-        // Sorting
         String sortField = "nextSessionDate";
         Sort.Direction direction = Sort.Direction.ASC;
         if ("priceAsc".equals(sort)) {
@@ -117,14 +107,19 @@ public class CourseService {
         Pageable pageable = PageRequest.of(page != null ? page : 0, size != null ? size : 10, direction, sortField);
 
         CriteriaQuery query = new CriteriaQuery(criteria, pageable);
-
         SearchHits<CourseDocument> hits = elasticsearchOperations.search(query, CourseDocument.class);
-
         List<CourseDocument> courses = hits.get().map(SearchHit::getContent).collect(Collectors.toList());
 
         CourseSearchResponse response = new CourseSearchResponse();
         response.setTotal(hits.getTotalHits());
         response.setCourses(courses != null ? courses : new ArrayList<>());
         return response;
+    }
+
+    public List<String> suggestTitlePrefix(String prefix) {
+        Criteria prefixCriteria = new Criteria("title").startsWith(prefix);
+        CriteriaQuery query = new CriteriaQuery(prefixCriteria, PageRequest.of(0, 10));
+        SearchHits<CourseDocument> hits = elasticsearchOperations.search(query, CourseDocument.class);
+        return hits.get().map(hit -> hit.getContent().getTitle()).distinct().collect(Collectors.toList());
     }
 }
