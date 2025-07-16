@@ -31,7 +31,7 @@ public class CourseService {
     private final ElasticsearchOperations elasticsearchOperations;
 
     @Autowired
-    private ObjectMapper objectMapper; // Let Spring inject (autoconfigure) it
+    private ObjectMapper objectMapper;  //spring inject
 
     @PostConstruct
     public void loadSampleData() {
