@@ -17,6 +17,11 @@
     <elasticsearch.version>8.18.1</elasticsearch.version>
   </properties>
   <dependencies>
+  <dependency>
+    <groupId>org.springframework.data</groupId>
+    <artifactId>spring-data-elasticsearch</artifactId>
+    <version>5.2.3</version>
+</dependency>
     <!-- Spring Boot Web for REST APIs -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
